@@ -1,26 +1,292 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-display: "PP Editorial Old", Georgia, serif;
+  
+  /* Custom greys */
+  --color-grey-50: #faf9f7;
+  --color-grey-100: #f5f3f0;
+  --color-grey-200: #e8e4de;
+  --color-grey-300: #d6d0c7;
+  --color-grey-400: #a8a093;
+  --color-grey-500: #78716c;
+  --color-grey-600: #57534e;
+  --color-grey-700: #44403c;
+  --color-grey-800: #292524;
+  --color-grey-900: #1c1917;
+  --color-grey-950: #0c0a09;
+  
+  /* Warm earth tones - Rift Valley inspired */
+  --color-terracotta: #c4664a;
+  --color-terracotta-dark: #a3523b;
+  --color-ochre: #c9a962;
+  --color-ochre-dark: #a88c4a;
+  --color-sage: #7d8c6e;
+  --color-sage-dark: #5f6b52;
+  --color-coffee: #4a3728;
+  --color-spice: #8b4513;
+  --color-sand: #d4c4a8;
+  --color-cream: #f5f0e6;
+  
+  /* Accent colors */
+  --color-accent: #c9a962;
+  --color-accent-dark: #a88c4a;
+  
+  /* Custom easing */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* PP Editorial Old - Local fonts */
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-Thin.woff2") format("woff2"),
+       url("/web/PPEditorialOld-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-ThinItalic.woff2") format("woff2"),
+       url("/web/PPEditorialOld-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-Ultralight.woff2") format("woff2"),
+       url("/web/PPEditorialOld-Ultralight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-UltralightItalic.woff2") format("woff2"),
+       url("/web/PPEditorialOld-UltralightItalic.woff") format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-Regular.woff2") format("woff2"),
+       url("/web/PPEditorialOld-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-Italic.woff2") format("woff2"),
+       url("/web/PPEditorialOld-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-Bold.woff2") format("woff2"),
+       url("/web/PPEditorialOld-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-BoldItalic.woff2") format("woff2"),
+       url("/web/PPEditorialOld-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-Heavy.woff2") format("woff2"),
+       url("/web/PPEditorialOld-Heavy.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Editorial Old";
+  src: url("/web/PPEditorialOld-HeavyItalic.woff2") format("woff2"),
+       url("/web/PPEditorialOld-HeavyItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Instrument Sans - Google Fonts */
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("https://fonts.gstatic.com/s/instrumentsans/v1/pximypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr-yp2JGEJOH9npST3-Qf1mS0v3_7Y.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("https://fonts.gstatic.com/s/instrumentsans/v1/pximypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr-yp2JGEJOH9npST3-Qf1mS0v3_7Y.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-grey-900);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar for cleaner aesthetic */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-terracotta);
+  color: white;
+}
+
+/* Custom utility classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition-timing-function: var(--ease-smooth);
+}
+
+/* Line clamp utilities */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Background text styling */
+.bg-text {
+  font-size: clamp(8rem, 25vw, 20rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--color-grey-800);
+  opacity: 0.08;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Link hover animation */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.4s var(--ease-smooth);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Dot accent */
+.dot-accent {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-terracotta);
+}
+
+/* Blur background for navbar */
+.backdrop-blur-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Image hover effects */
+.img-zoom {
+  transition: transform 0.8s var(--ease-smooth);
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient overlays */
+.gradient-overlay {
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);
+}
+
+/* Color accents */
+.text-terracotta {
+  color: var(--color-terracotta);
+}
+
+.text-ochre {
+  color: var(--color-ochre);
+}
+
+.text-sage {
+  color: var(--color-sage);
+}
+
+.bg-terracotta {
+  background-color: var(--color-terracotta);
+}
+
+.bg-ochre {
+  background-color: var(--color-ochre);
+}
+
+.bg-sage {
+  background-color: var(--color-sage);
+}
+
+.bg-coffee {
+  background-color: var(--color-coffee);
+}
+
+.bg-cream {
+  background-color: var(--color-cream);
+}
+
+.bg-sand {
+  background-color: var(--color-sand);
 }

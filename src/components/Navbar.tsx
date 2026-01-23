@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -44,12 +45,15 @@ export default function Navbar() {
           {/* Logo */}
           <motion.a
             href="#"
-            className="font-display text-xl md:text-2xl font-light tracking-tight text-[#1c1917]"
+            className="flex items-center gap-2"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            Rift Valley <span className="text-[#c4664a] italic">Traders</span>
+            <Logo color="#1c1917" size={32} />
+            <span className="font-display text-xl md:text-2xl font-light tracking-tight text-[#1c1917]">
+              Rift Valley <span className="text-[#c4664a] italic">Traders</span>
+            </span>
           </motion.a>
 
           {/* Desktop Navigation */}

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import Logo from "./Logo";
 
 const socialLinks = [
   { name: "LinkedIn", href: "#" },
@@ -47,9 +48,12 @@ export default function Footer() {
           >
             <a
               href="#"
-              className="font-display text-3xl font-light tracking-tight text-white"
+              className="flex items-center gap-3"
             >
-              Rift Valley <span className="text-[#c4664a] italic">Traders</span>
+              <Logo color="#f5f0e6" size={36} />
+              <span className="font-display text-2xl font-light tracking-tight text-white">
+                Rift Valley <span className="text-[#c4664a] italic">Traders</span>
+              </span>
             </a>
             <p className="mt-6 text-[15px] leading-[1.7] text-[#a8a093] max-w-[360px]">
               Connecting the world with Africa&apos;s finest commodities since 1987. 

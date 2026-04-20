@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo, { LogoWithText } from "@/components/Logo";
 import Link from "next/link";
+import { PRIMARY_CONTACT } from "@/lib/contact";
 
 const BRAND_PASSWORD = "riftvalley2024";
 
@@ -99,6 +100,16 @@ export default function BrandAssetsPage() {
               Access Brand Assets
             </button>
           </form>
+
+          <p className="mt-6 text-center text-[13px] text-[#78716c]">
+            Need access?{" "}
+            <a
+              href={`mailto:${PRIMARY_CONTACT.email}?subject=${encodeURIComponent("Brand assets access request")}`}
+              className="text-[#c4664a] hover:underline"
+            >
+              {PRIMARY_CONTACT.email}
+            </a>
+          </p>
 
           <div className="mt-8 text-center">
             <Link
@@ -375,4 +386,6 @@ export default function BrandAssetsPage() {
     </div>
   );
 }
+
+
 

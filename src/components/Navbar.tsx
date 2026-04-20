@@ -169,9 +169,12 @@ export default function Navbar() {
                   Since 1987
                 </span>
               </div>
-              <p className="text-[13px] text-[#57534e]">
-                trade@riftvalleytraders.com
-              </p>
+              <a
+                href="mailto:gideon@riftvalleytraders.co"
+                className="text-[13px] text-[#57534e] hover:text-[#c4664a] transition-colors"
+              >
+                gideon@riftvalleytraders.co
+              </a>
             </motion.div>
           </motion.div>
         )}

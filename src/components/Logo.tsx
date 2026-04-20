@@ -6,6 +6,10 @@ interface LogoProps {
   size?: number;
 }
 
+/**
+ * Vectorized sailboat-in-circle icon matching Rift Valley Traders brand.
+ * Solid shapes: circular frame, two triangular sails (main + jib), hull, two water lines.
+ */
 export default function Logo({ className = "", color = "currentColor", size = 40 }: LogoProps) {
   return (
     <svg
@@ -15,92 +19,80 @@ export default function Logo({ className = "", color = "currentColor", size = 40
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      aria-hidden
     >
-      {/* Minimalist Arabic Dhow - elegant triangular sail with curved hull */}
-      
-      {/* Main sail - tall elegant triangle */}
-      <path
-        d="M50 8 L50 72 L78 68"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      
-      {/* Sail fill - subtle */}
-      <path
-        d="M50 12 L50 70 L75 66 Z"
-        fill={color}
-        fillOpacity="0.08"
-      />
-      
-      {/* Mast */}
-      <line
-        x1="50"
-        y1="8"
-        x2="50"
-        y2="78"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      
-      {/* Hull - elegant curved dhow shape */}
-      <path
-        d="M18 78 Q35 82 50 80 Q65 78 82 74 Q88 73 90 70"
+      {/* Circular frame */}
+      <circle
+        cx="50"
+        cy="50"
+        r="46"
         stroke={color}
         strokeWidth="2.5"
-        strokeLinecap="round"
         fill="none"
       />
-      
-      {/* Hull accent line */}
+      {/* Water lines (two wavy horizontals) */}
       <path
-        d="M22 82 Q40 86 55 84 Q70 82 85 78"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-        opacity="0.5"
-      />
-      
-      {/* Bow detail - pointed front */}
-      <path
-        d="M90 70 L94 68"
+        d="M22 82 Q30 80 38 82 Q46 84 50 83 Q54 84 62 82 Q70 80 78 82"
         stroke={color}
         strokeWidth="2"
         strokeLinecap="round"
+        fill="none"
       />
-      
-      {/* Small flag/pennant at top */}
       <path
-        d="M50 8 L42 12 L50 14"
+        d="M20 88 Q32 86 40 88 Q48 90 50 89 Q52 90 60 88 Q68 86 80 88"
         stroke={color}
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
+        fill="none"
+      />
+      {/* Hull — elongated, tapering toward bow (left) */}
+      <path
+        d="M78 74 L52 76 L26 74 L22 72 L78 74 Z"
         fill={color}
-        fillOpacity="0.15"
+      />
+      {/* Main sail — large triangle, pointing up and right */}
+      <path
+        d="M50 76 L50 28 L76 52 Z"
+        fill={color}
+      />
+      {/* Jib — smaller triangle, forward of main, pointing top-left */}
+      <path
+        d="M50 76 L50 38 L26 52 Z"
+        fill={color}
       />
     </svg>
   );
 }
 
-// Horizontal logo with text
-export function LogoWithText({ 
-  className = "", 
+/** Full logo: icon + “Rift Valley Traders” and taglines with refined serif typography */
+export function LogoWithText({
+  className = "",
   color = "currentColor",
-  accentColor = "#c4664a",
-  size = 36 
-}: LogoProps & { accentColor?: string }) {
+  size = 40,
+  variant = "full",
+  accentColor,
+}: LogoProps & { variant?: "full" | "compact"; accentColor?: string }) {
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div
+      className={`flex items-center gap-4 ${className}`}
+      style={{ color }}
+    >
       <Logo color={color} size={size} />
-      <span className="font-display text-xl md:text-2xl font-light tracking-tight" style={{ color }}>
-        Rift Valley <span className="italic" style={{ color: accentColor }}>Traders</span>
-      </span>
+      <div className="flex flex-col justify-center">
+        <span className="font-display text-xl md:text-2xl font-normal tracking-tight leading-tight">
+          Rift Valley Traders
+        </span>
+        {variant === "full" && (
+          <>
+            <span className="font-display text-[11px] md:text-xs font-normal tracking-wide text-[0.9em] opacity-90 mt-0.5">
+              — and Associates, Inc. —
+            </span>
+            <span className="font-display text-[10px] md:text-[11px] font-normal tracking-wide opacity-75 mt-0.5">
+              a Sarnian Group partner
+            </span>
+          </>
+        )}
+      </div>
     </div>
   );
 }
-

@@ -1,32 +1,117 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type FormEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import Logo from "./Logo";
+import {
+  COMPANY,
+  PRIMARY_CONTACT,
+  PARTNERS,
+  mailtoPrimary,
+  mailtoPartner,
+} from "@/lib/contact";
 
 const ctaLinks = [
   {
     title: "Partner With Us",
     description: "Explore wholesale opportunities",
-    href: "#contact",
+    href: mailtoPrimary("Partner inquiry — Rift Valley Traders"),
     color: "#c4664a",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Request Samples",
     description: "Experience quality firsthand",
-    href: "#contact",
+    href: mailtoPrimary("Sample request — Rift Valley Traders"),
     color: "#c9a962",
     image: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Visit Our Farms",
     description: "Schedule an origin trip",
-    href: "#contact",
+    href: mailtoPrimary("Origin visit — Rift Valley Traders"),
     color: "#7d8c6e",
     image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2232&auto=format&fit=crop",
   },
 ];
+
+function ContactMailtoForm() {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const fromEmail = (form.elements.namedItem("fromEmail") as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+    const body = [
+      name && `Name: ${name}`,
+      fromEmail && `Reply-to: ${fromEmail}`,
+      "",
+      message || "(Your message)",
+    ].join("\n");
+    window.location.href = mailtoPrimary("Message from riftvalleytraders.co", body);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-xl mx-auto text-left space-y-4"
+      id="contact-form"
+    >
+      <div>
+        <label htmlFor="contact-name" className="block text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-2">
+          Name
+        </label>
+        <input
+          id="contact-name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          className="w-full bg-white/60 border border-[#a8a093]/40 px-4 py-3 text-[#1c1917] placeholder:text-[#78716c] focus:outline-none focus:border-[#c4664a] transition-colors"
+          placeholder="Your name"
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-email" className="block text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-2">
+          Your email
+        </label>
+        <input
+          id="contact-email"
+          name="fromEmail"
+          type="email"
+          autoComplete="email"
+          className="w-full bg-white/60 border border-[#a8a093]/40 px-4 py-3 text-[#1c1917] placeholder:text-[#78716c] focus:outline-none focus:border-[#c4664a] transition-colors"
+          placeholder="you@company.com"
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-message" className="block text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-2">
+          Message
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows={4}
+          className="w-full bg-white/60 border border-[#a8a093]/40 px-4 py-3 text-[#1c1917] placeholder:text-[#78716c] focus:outline-none focus:border-[#c4664a] transition-colors resize-y min-h-[120px]"
+          placeholder="How can we help?"
+        />
+      </div>
+      <p className="text-[12px] text-[#57534e]">
+        Sends an email to{" "}
+        <a href={`mailto:${PRIMARY_CONTACT.email}`} className="text-[#1c1917] underline underline-offset-2 hover:text-[#c4664a]">
+          {PRIMARY_CONTACT.email}
+        </a>{" "}
+        (Gideon Belete) via your mail app.
+      </p>
+      <button
+        type="submit"
+        className="w-full md:w-auto px-8 py-3 bg-[#1c1917] text-[#f5f0e6] text-[12px] uppercase tracking-[0.15em] hover:bg-[#c4664a] transition-colors duration-300"
+      >
+        Send message
+      </button>
+    </form>
+  );
+}
 
 export default function CTA() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -133,44 +218,141 @@ export default function CTA() {
           ))}
         </div>
 
-        {/* Contact info */}
+        {/* Partners */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 lg:mt-24 pt-12 border-t border-[#a8a093]/30"
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-20 lg:mt-28 pt-12 border-t border-[#a8a093]/30"
         >
-          <div className="text-center md:text-left">
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-3">
-              Email
-            </h4>
-            <a
-              href="mailto:trade@riftvalleytraders.com"
-              className="text-[17px] text-[#1c1917] hover:text-[#c4664a] transition-colors duration-300 link-underline font-display"
-            >
-              trade@riftvalleytraders.com
-            </a>
-          </div>
-          <div className="text-center">
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-3">
-              Phone
-            </h4>
-            <a
-              href="tel:+254201234567"
-              className="text-[17px] text-[#1c1917] hover:text-[#c4664a] transition-colors duration-300 link-underline font-display"
-            >
-              +254 20 123 4567
-            </a>
-          </div>
-          <div className="text-center md:text-right">
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-3">
-              Headquarters
-            </h4>
-            <p className="text-[17px] text-[#1c1917] font-display">
-              Westlands Business Park
-              <br />
-              Nairobi, Kenya
+          <div className="text-center mb-12">
+            <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] text-[#1c1917] font-light tracking-tight mb-2">
+              Partners
+            </h3>
+            <p className="text-[14px] text-[#57534e] max-w-2xl mx-auto italic">
+              {COMPANY.tagline}
             </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            {PARTNERS.map((partner, index) => (
+              <motion.article
+                key={partner.id}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.5 + index * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="bg-white/40 border border-[#a8a093]/25 p-8 flex flex-col items-center text-center"
+              >
+                <div className="mb-6 flex items-center justify-center w-24 h-24 rounded-full bg-[#f5f0e6] border border-[#a8a093]/30">
+                  <Logo color="#1c1917" size={56} />
+                </div>
+                <h4 className="font-display text-xl text-[#1c1917] mb-1">{partner.name}</h4>
+                <p className="text-[12px] uppercase tracking-[0.15em] text-[#57534e] mb-4">{partner.role}</p>
+                <a
+                  href={`mailto:${partner.email}`}
+                  className="text-[15px] text-[#1c1917] hover:text-[#c4664a] transition-colors link-underline font-display mb-2"
+                >
+                  {partner.email}
+                </a>
+                <a
+                  href={partner.telHref}
+                  className="text-[15px] text-[#1c1917] hover:text-[#c4664a] transition-colors font-display mb-4"
+                >
+                  {partner.phoneDisplay}
+                </a>
+                <p className="text-[13px] text-[#57534e] leading-relaxed mb-2">
+                  {COMPANY.addressLines[0]}
+                  <br />
+                  {COMPANY.addressLines[1]}
+                </p>
+                <p className="text-[12px] text-[#57534e] mb-3">{COMPANY.legalName}</p>
+                <a
+                  href={COMPANY.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[14px] text-[#c4664a] hover:underline mb-6"
+                >
+                  {COMPANY.websiteDisplay}
+                </a>
+                <a
+                  href={mailtoPartner(partner.email, `Inquiry — ${partner.name}`)}
+                  className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-[#1c1917] border border-[#1c1917]/30 px-4 py-2 hover:bg-[#1c1917] hover:text-[#f5f0e6] transition-colors"
+                >
+                  Learn more
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+                    <path
+                      d="M3 8H13M13 8L8 3M13 8L8 13"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
+              </motion.article>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Contact — primary + form (mailto Gideon) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-20 lg:mt-24 pt-12 border-t border-[#a8a093]/30 items-start"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-8 text-center sm:text-left">
+            <div>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-3">
+                Email
+              </h4>
+              <a
+                href={`mailto:${PRIMARY_CONTACT.email}`}
+                className="text-[17px] text-[#1c1917] hover:text-[#c4664a] transition-colors duration-300 link-underline font-display"
+              >
+                {PRIMARY_CONTACT.email}
+              </a>
+              <p className="text-[13px] text-[#57534e] mt-1">{PRIMARY_CONTACT.name}</p>
+            </div>
+            <div>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-3">
+                Phone
+              </h4>
+              <a
+                href={PRIMARY_CONTACT.telHref}
+                className="text-[17px] text-[#1c1917] hover:text-[#c4664a] transition-colors duration-300 link-underline font-display"
+              >
+                {PRIMARY_CONTACT.phoneDisplay}
+              </a>
+            </div>
+            <div>
+              <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-3">
+                Office
+              </h4>
+              <p className="text-[17px] text-[#1c1917] font-display leading-relaxed">
+                {COMPANY.addressLines[0]}
+                <br />
+                {COMPANY.addressLines[1]}
+              </p>
+              <p className="text-[13px] text-[#57534e] mt-2">{COMPANY.legalName}</p>
+              <a
+                href={COMPANY.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 text-[15px] text-[#c4664a] hover:underline"
+              >
+                {COMPANY.websiteDisplay}
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#57534e] mb-6 text-center lg:text-left">
+              Write us
+            </h4>
+            <ContactMailtoForm />
           </div>
         </motion.div>
       </div>

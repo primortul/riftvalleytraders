@@ -152,7 +152,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c4664a]" />
             <span className="text-[12px] tracking-[0.1em] text-[#78716c]">
-              Nairobi · Mombasa · Addis Ababa · Dar es Salaam
+              26 Shaw Place · Hartsdale, NY 10530
             </span>
           </div>
           <a

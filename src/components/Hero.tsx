@@ -109,9 +109,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-[600px] mx-auto mt-10 text-[15px] md:text-[17px] leading-[1.7] text-[#57534e]"
         >
-          Connecting the world&apos;s most discerning buyers with Africa&apos;s finest 
-          commodities. Premium coffee, rare spices, and heritage goods sourced 
-          directly from the heart of the Rift Valley.
+          Connecting global markets with Africa&apos;s finest commodities — from 
+          single-origin coffee, spices, and heritage goods for discerning buyers 
+          to bulk grain and commodity trade at scale, sourced from the heart of 
+          the Rift Valley.
         </motion.p>
 
         {/* CTA Button */}

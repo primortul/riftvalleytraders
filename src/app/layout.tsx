@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rift Valley Traders | Premium African Commodities",
+  title: "Rift Valley Traders | African Specialty & Commodity Trade",
   description:
-    "Connecting the world's most discerning buyers with Africa's finest commodities. Premium coffee, rare spices, and heritage goods sourced directly from the heart of the Rift Valley since 1987.",
+    "Connecting global markets with Africa's finest commodities since 1987. Single-origin coffee, spices, and heritage goods for discerning buyers, plus bulk grain, sugar, and commodity trade at scale.",
   keywords: [
     "African commodities",
     "premium coffee",
@@ -12,15 +12,20 @@ export const metadata: Metadata = {
     "Kenyan coffee",
     "rare spices",
     "heritage grains",
+    "bulk grain trade",
+    "commodity trading",
+    "wheat maize rice supply",
+    "sugar trade",
+    "cotton cocoa cashew",
     "direct trade",
     "sustainable sourcing",
     "East Africa trade",
   ],
   authors: [{ name: "Rift Valley Traders" }],
   openGraph: {
-    title: "Rift Valley Traders | Premium African Commodities",
+    title: "Rift Valley Traders | African Specialty & Commodity Trade",
     description:
-      "Premium coffee, rare spices, and heritage goods sourced directly from the heart of the Rift Valley.",
+      "Single-origin specialty goods for discerning buyers, plus bulk grain and commodity trade at scale — sourced from the heart of the Rift Valley.",
     type: "website",
     locale: "en_US",
   },

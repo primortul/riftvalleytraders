@@ -3,53 +3,33 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import type { Product } from "@/lib/products";
 
-const services = [
-  {
-    number: "01",
-    title: "Premium Coffee",
-    description:
-      "Single-origin Arabica from the highlands of Ethiopia and Kenya. Hand-picked, sun-dried, and carefully processed to preserve complex flavor profiles.",
-    regions: ["Ethiopian Yirgacheffe", "Kenyan AA", "Rwandan Bourbon"],
-    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1961&auto=format&fit=crop",
-    color: "#4a3728",
-  },
-  {
-    number: "02",
-    title: "Rare Spices",
-    description:
-      "The finest vanilla from Madagascar, Zanzibar cloves, and rare peppers from the volcanic soils of the Rift Valley. Each spice tells a story of terroir and tradition.",
-    regions: ["Madagascar Vanilla", "Zanzibar Cloves", "Kampot Pepper"],
-    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2070&auto=format&fit=crop",
-    color: "#8b4513",
-  },
-  {
-    number: "03",
-    title: "Heritage Grains",
-    description:
-      "Ancient grains that have sustained civilizations. Teff from the Ethiopian highlands, heritage sorghum, and specialty millets grown using traditional methods.",
-    regions: ["Ethiopian Teff", "Heritage Sorghum", "Pearl Millet"],
-    image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=2070&auto=format&fit=crop",
-    color: "#c9a962",
-  },
-  {
-    number: "04",
-    title: "Botanical Oils",
-    description:
-      "Cold-pressed oils from Africa's most prized botanicals. Argan, marula, and baobab oils that capture the essence of the continent's biodiversity.",
-    regions: ["Argan Oil", "Marula Oil", "Baobab Oil"],
-    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=2187&auto=format&fit=crop",
-    color: "#7d8c6e",
-  },
-];
+type ProductSectionProps = {
+  id?: string;
+  eyebrow: string;
+  heading: string;
+  headingAccent: string;
+  products: Product[];
+  ctaLabel?: string;
+  ctaHref?: string;
+};
 
-export default function Services() {
+export default function ProductSection({
+  id = "services",
+  eyebrow,
+  heading,
+  headingAccent,
+  products,
+  ctaLabel,
+  ctaHref,
+}: ProductSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
     <section
-      id="services"
+      id={id}
       ref={containerRef}
       className="relative py-32 lg:py-48 bg-[#f5f0e6]"
     >
@@ -64,21 +44,21 @@ export default function Services() {
           <div className="flex items-center gap-3 mb-8">
             <span className="dot-accent" />
             <span className="text-[11px] uppercase tracking-[0.3em] text-[#78716c] font-medium">
-              What We Trade
+              {eyebrow}
             </span>
           </div>
           <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] tracking-[-0.02em] text-[#1c1917] font-light">
-            Commodities of
+            {heading}
             <br />
-            <span className="italic text-[#c4664a]">Distinction</span>
+            <span className="italic text-[#c4664a]">{headingAccent}</span>
           </h2>
         </motion.div>
 
-        {/* Services grid with images */}
+        {/* Products grid with images */}
         <div className="space-y-24 lg:space-y-32">
-          {services.map((service, index) => (
+          {products.map((product, index) => (
             <motion.div
-              key={service.number}
+              key={product.number}
               initial={{ opacity: 0, y: 60 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -99,52 +79,52 @@ export default function Services() {
                     className="w-full h-full"
                   >
                     <Image
-                      src={service.image}
-                      alt={service.title}
+                      src={product.image}
+                      alt={product.title}
                       fill
                       className="object-cover"
                     />
                   </motion.div>
                   {/* Color overlay on hover */}
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-500"
-                    style={{ backgroundColor: service.color }}
+                    style={{ backgroundColor: product.color }}
                   />
                 </div>
                 {/* Decorative element */}
-                <div 
+                <div
                   className="absolute -bottom-4 -right-4 w-24 h-24 -z-10 opacity-30"
-                  style={{ backgroundColor: service.color }}
+                  style={{ backgroundColor: product.color }}
                 />
               </div>
 
               {/* Content */}
               <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
                 <div className="flex items-center gap-4 mb-6">
-                  <span 
+                  <span
                     className="text-[11px] tracking-[0.2em] font-medium px-3 py-1"
-                    style={{ backgroundColor: service.color, color: "white" }}
+                    style={{ backgroundColor: product.color, color: "white" }}
                   >
-                    {service.number}
+                    {product.number}
                   </span>
                   <div className="h-[1px] flex-1 bg-[#e8e4de]" />
                 </div>
-                
+
                 <h3 className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] tracking-tight text-[#1c1917] mb-6">
-                  {service.title}
+                  {product.title}
                 </h3>
-                
+
                 <p className="text-[15px] leading-[1.7] text-[#57534e] mb-8">
-                  {service.description}
+                  {product.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2">
-                  {service.regions.map((region) => (
+                  {product.tags.map((tag) => (
                     <span
-                      key={region}
+                      key={tag}
                       className="inline-block text-[11px] uppercase tracking-[0.15em] text-[#78716c] border border-[#d6d0c7] px-4 py-2 hover:border-[#c4664a] hover:text-[#c4664a] transition-colors duration-300"
                     >
-                      {region}
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -154,34 +134,36 @@ export default function Services() {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-24 lg:mt-32 text-center"
-        >
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-4 bg-[#c4664a] text-white px-8 py-4 text-[13px] uppercase tracking-[0.2em] hover:bg-[#a3523b] transition-colors duration-300"
+        {ctaLabel && ctaHref && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-24 lg:mt-32 text-center"
           >
-            <span>Request Product Catalog</span>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              className="group-hover:translate-x-1 transition-transform duration-300"
+            <a
+              href={ctaHref}
+              className="group inline-flex items-center gap-4 bg-[#c4664a] text-white px-8 py-4 text-[13px] uppercase tracking-[0.2em] hover:bg-[#a3523b] transition-colors duration-300"
             >
-              <path
-                d="M3 8H13M13 8L8 3M13 8L8 13"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </a>
-        </motion.div>
+              <span>{ctaLabel}</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="group-hover:translate-x-1 transition-transform duration-300"
+              >
+                <path
+                  d="M3 8H13M13 8L8 3M13 8L8 13"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          </motion.div>
+        )}
       </div>
     </section>
   );

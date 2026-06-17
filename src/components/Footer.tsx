@@ -17,6 +17,13 @@ const footerLinks = [
   { name: "Sustainability Report", href: "#" },
 ];
 
+const navItems = [
+  { name: "About", href: "/#about" },
+  { name: "Specialty", href: "/specialty" },
+  { name: "Commodities", href: "/commodities" },
+  { name: "Contact", href: "/#contact" },
+];
+
 export default function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-50px" });
@@ -47,7 +54,7 @@ export default function Footer() {
             className="lg:col-span-5"
           >
             <a
-              href="#"
+              href="/"
               className="flex items-center gap-3"
             >
               <Logo color="#f5f0e6" size={36} />
@@ -57,7 +64,8 @@ export default function Footer() {
             </a>
             <p className="mt-6 text-[15px] leading-[1.7] text-[#a8a093] max-w-[360px]">
               Connecting the world with Africa&apos;s finest commodities since 1987. 
-              Premium coffee, rare spices, and heritage goods sourced with integrity.
+              From single-origin specialty goods to bulk grain and commodity trade, 
+              sourced and supplied with integrity.
             </p>
             
             {/* Color dots representing commodities */}
@@ -80,13 +88,13 @@ export default function Footer() {
               Navigate
             </h4>
             <div className="flex flex-col gap-3">
-              {["About", "Services", "Philosophy", "Contact"].map((link) => (
+              {navItems.map((link) => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
+                  key={link.name}
+                  href={link.href}
                   className="text-[14px] text-[#d6d0c7] hover:text-[#c4664a] transition-colors duration-300"
                 >
-                  {link}
+                  {link.name}
                 </a>
               ))}
             </div>

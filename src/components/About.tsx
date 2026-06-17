@@ -96,13 +96,15 @@ export default function About() {
                 spent nearly four decades building relationships with the finest 
                 producers across East Africa. What began as a small trading 
                 operation has grown into one of the region&apos;s most respected 
-                commodity houses.
+                commodity houses, trading across two divisions.
               </p>
               <p className="text-[15px] leading-[1.7] text-[#57534e]">
-                We work directly with farming cooperatives, ensuring fair prices 
-                that support local communities while delivering exceptional quality 
-                to our global partners. Every shipment carries with it the rich 
-                heritage of African craftsmanship and agricultural excellence.
+                Our Specialty &amp; Origin division curates single-origin coffee, 
+                spices, and heritage goods for discerning buyers, while our Grain 
+                &amp; Commodity Trade division supplies staple grains, sugar, and 
+                soft commodities at scale. Across both, we work directly with 
+                producers — ensuring fair prices for communities and exceptional 
+                reliability for our global partners.
               </p>
             </motion.div>
 

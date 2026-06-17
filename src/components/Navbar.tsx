@@ -5,10 +5,11 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import Logo from "./Logo";
 
 const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Philosophy", href: "#philosophy" },
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "/#about" },
+  { name: "Specialty", href: "/specialty" },
+  { name: "Commodities", href: "/commodities" },
+  { name: "Philosophy", href: "/#philosophy" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -44,7 +45,7 @@ export default function Navbar() {
         <nav className="max-w-[1400px] mx-auto flex items-center justify-between">
           {/* Logo */}
           <motion.a
-            href="#"
+            href="/"
             className="flex items-center gap-2"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

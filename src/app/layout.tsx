@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import PageviewTracker from "@/components/analytics/PageviewTracker";
 import "./globals.css";
+
+const TRACKED_HOSTNAMES = ["riftvalleytraders.co", "www.riftvalleytraders.co"];
 
 export const metadata: Metadata = {
   title: "Rift Valley Traders | African Specialty & Commodity Trade",
@@ -41,7 +44,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <PageviewTracker site="riftvalley" hostnames={TRACKED_HOSTNAMES} />
+      </body>
     </html>
   );
 }
